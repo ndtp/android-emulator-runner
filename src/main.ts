@@ -244,7 +244,7 @@ async function run() {
     }
 
     // finally kill the emulator
-    await killEmulator(port);
+    // await killEmulator(port);
   } catch (error) {
     // kill the emulator so the action can exit
     await killEmulator(port);

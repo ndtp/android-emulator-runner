@@ -4,6 +4,7 @@ Refer to the [recommendations for versioning and releasing actions](https://gith
 
 ## New major release
 
+- Run `npm install @actions/exec`
 - From `main` branch, run `npm run build && npm test --clean && npm run lint` to make sure `lib/*.js` are up-to-date.
 - Update `CHANGELOG.md`, push change with "Prepare for release X.Y.Z." (where X.Y.Z is the new version).
 - Create a new branch e.g. `release/v1`, comment out `node_modules/` in `.gitignore`, commit the change (do not commit yet `node_modules`).

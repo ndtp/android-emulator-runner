@@ -210,24 +210,25 @@ async function run() {
     }
 
     // launch an emulator
-    await launchEmulator(avdName, disableAnimations, disableLinuxHardwareAcceleration, disableSpellchecker, emulatorBootTimeout, emulatorOptions, enableHardwareKeyboard, port);
+    launchEmulator(avdName, disableAnimations, disableLinuxHardwareAcceleration, disableSpellchecker, emulatorBootTimeout, emulatorOptions, enableHardwareKeyboard, port);
 
-    // execute the custom script
-    try {
-      // move to custom working directory if set
-      if (workingDirectory) {
-        process.chdir(workingDirectory);
-      }
-      for (const script of scripts) {
-        // use array form to avoid various quote escaping problems
-        // caused by exec(`sh -c "${script}"`)
-        await exec.exec('sh', ['-c', script], {
-          env: { ...process.env, EMULATOR_PORT: `${port}`, ANDROID_SERIAL: `emulator-${port}` },
-        });
-      }
-    } catch (error) {
-      core.setFailed(error instanceof Error ? error.message : (error as string));
-    }
+    // No custom script execution for now
+    //     // execute the custom script
+    //     try {
+    //       // move to custom working directory if set
+    //       if (workingDirectory) {
+    //         process.chdir(workingDirectory);
+    //       }
+    //       for (const script of scripts) {
+    //         // use array form to avoid various quote escaping problems
+    //         // caused by exec(`sh -c "${script}"`)
+    //         await exec.exec('sh', ['-c', script], {
+    //           env: { ...process.env, EMULATOR_PORT: `${port}`, ANDROID_SERIAL: `emulator-${port}` },
+    //         });
+    //       }
+    //     } catch (error) {
+    //       core.setFailed(error instanceof Error ? error.message : (error as string));
+    //     }
 
     // finally kill the emulator
     // await killEmulator(port);

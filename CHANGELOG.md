@@ -4,6 +4,12 @@
 
 No changes yet.
 
+
+## v4.0.0
+
+Remove script step.
+Do not await emulator launch
+
 ## v3.0.0
 
 ndtp first version

@@ -4,6 +4,10 @@
 
 No changes yet.
 
+## v3.0.0
+
+ndtp first version
+
 ## v2.34.0
 
 * Allow arbitrary value for `api-level` such as `Baklava` and `35-ext15`. - [428](https://github.com/ReactiveCircus/android-emulator-runner/pull/428)

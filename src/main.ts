@@ -246,4 +246,6 @@ async function run() {
   }
 }
 
+console.log(`::group::Before Run`);
 run();
+console.log(`::group::After Run`);

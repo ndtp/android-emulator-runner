@@ -111,6 +111,8 @@ export async function launchEmulator(
     if (enableHardwareKeyboard) {
       await adb(port, `shell settings put secure show_ime_with_hard_keyboard 0`);
     }
+
+    console.log('Emulator should be running and configured now.');
   } finally {
     console.log(`::endgroup::`);
   }

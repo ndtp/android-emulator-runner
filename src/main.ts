@@ -212,6 +212,8 @@ async function run() {
     // launch an emulator
     launchEmulator(avdName, disableAnimations, disableLinuxHardwareAcceleration, disableSpellchecker, emulatorBootTimeout, emulatorOptions, enableHardwareKeyboard, port);
 
+    console.log('launchEmulator completed');
+
     // No custom script execution for now
     //     // execute the custom script
     //     try {

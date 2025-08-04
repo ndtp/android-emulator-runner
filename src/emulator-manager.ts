@@ -82,7 +82,7 @@ export async function launchEmulator(
       emulatorOptions += ' -accel off';
     }
 
-    // start emulator
+    // Start emulator in the background
     console.log('Starting emulator.');
 
     await exec.exec(`sh -c \\"${process.env.ANDROID_HOME}/emulator/emulator -port ${port} -avd "${avdName}" ${emulatorOptions} &"`, [], {
@@ -95,10 +95,11 @@ export async function launchEmulator(
       },
     });
 
-    // wait for emulator to complete booting
+    console.log('Waiting for emulator to boot...');
     await waitForDevice(port, emulatorBootTimeout);
-    await adb(port, `shell input keyevent 82`);
 
+    // Configure emulator settings
+    await adb(port, `shell input keyevent 82`);
     if (disableAnimations) {
       console.log('Disabling animations.');
       await adb(port, `shell settings put global window_animation_scale 0.0`);
@@ -112,7 +113,7 @@ export async function launchEmulator(
       await adb(port, `shell settings put secure show_ime_with_hard_keyboard 0`);
     }
 
-    console.log('Emulator should be running and configured now.');
+    console.log('Emulator is running and configured.');
   } finally {
     console.log(`::endgroup::`);
   }

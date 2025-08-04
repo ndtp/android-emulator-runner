@@ -209,8 +209,9 @@ async function run() {
       console.log(`::endgroup::`);
     }
 
-    // launch an emulator
-    launchEmulator(avdName, disableAnimations, disableLinuxHardwareAcceleration, disableSpellchecker, emulatorBootTimeout, emulatorOptions, enableHardwareKeyboard, port);
+    // Launch emulator
+    await launchEmulator(avdName, disableAnimations, disableLinuxHardwareAcceleration, disableSpellchecker, emulatorBootTimeout, emulatorOptions, enableHardwareKeyboard, port);
+    console.log('Emulator launched successfully.');
 
     console.log('launchEmulator completed');
 

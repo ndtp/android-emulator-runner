@@ -17,16 +17,20 @@ inputs:
     default: '-no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim'
   disable-animations:
     description: 'whether to disable animations - true or false'
-    default: 'true'
+    type: boolean
+    default: true
   disable-spellchecker:
     description: 'whether to disable the Android spell checker framework, a common source of flakiness in text fields - `true` or `false`'
-    default: 'false'
+    type: boolean
+    default: false
   enable-hw-keyboard:
     description: 'whether to enable hardware keyboard - `true` or `false`.'
-    default: 'false'
+    type: boolean
+    default: false
   verbose:
     description: You can enable the verbose log for easier debugging.
-    default: 'false'
+    type: boolean
+    default: false
 
 outputs:
   emulator-port:

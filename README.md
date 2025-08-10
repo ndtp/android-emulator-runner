@@ -12,7 +12,7 @@ Add a step to your workflow YAML to launch the emulator:
 
 ```yaml
 - name: Launch Android Emulator
-  uses: ./android-emulator-runner
+  uses: ndtp/android-emulator-runner@v1.0.0
   with:
     avd-name: test
     emulator-port: 5554
@@ -56,18 +56,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Create AVD
+        id: create
+        uses: ndtp/android-avd-manager-action@main
+        with:
+          api-level: 29
+          target: google_apis
+          arch: x86_64
+          profile: pixel_3a
+
+      - name: Enable kernel-based virtual machine (KVM)
+        uses: ndtp/enable-kvm-action@v1
+
       # Set up Java and Android SDK as needed here
 
       - name: Launch Android Emulator
-        uses: ./android-emulator-runner
+        uses: ndtp/android-emulator-runner@v1.0.0
         with:
-          avd-name: test
-          emulator-port: 5554
           emulator-boot-timeout: 300
-          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
-          disable-animations: true
-          disable-spellchecker: true
-          enable-hw-keyboard: false
           verbose: true
 
       - name: Run Instrumented Tests
@@ -78,10 +84,6 @@ jobs:
 
 - [action.yml](./action.yml): Action definition and input/output specification.
 - [action.sh](./action.sh): Bash script that launches and configures the emulator.
-
-# Citations
-
-Portions of this are copyright of the original authors of https://github.com/ReactiveCircus/android-emulator-runner, licensed under [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 ## License
 

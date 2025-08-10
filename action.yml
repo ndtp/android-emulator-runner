@@ -1,0 +1,42 @@
+name: 'Launch Android Virtual Device Emulator'
+description: 'GitHub Action for launching a pre-existing Android Virtual Device (AVD) emulator.'
+author: 'ndtp'
+
+inputs:
+  avd-name:
+    description: 'custom AVD name used for creating the Android Virtual Device'
+    default: 'test'
+  emulator-port:
+    description: 'Port to run emulator on, allows to run multiple emulators on the same physical machine'
+    default: '5554'
+  emulator-boot-timeout:
+    description: 'Emulator boot timeout in seconds. If it takes longer to boot, the action would fail - e.g. `300` for 5 minutes'
+    default: '180'
+  emulator-options:
+    description: 'command-line options used when launching the emulator - e.g. `-no-window -no-snapshot -camera-back emulated`'
+    default: '-no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim'
+  disable-animations:
+    description: 'whether to disable animations - true or false'
+    default: 'true'
+  disable-spellchecker:
+    description: 'whether to disable the Android spell checker framework, a common source of flakiness in text fields - `true` or `false`'
+    default: 'false'
+  enable-hw-keyboard:
+    description: 'whether to enable hardware keyboard - `true` or `false`.'
+    default: 'false'
+  verbose:
+    description: You can enable the verbose log for easier debugging.
+    default: 'false'
+
+outputs:
+  emulator-port:
+    description: 'The port the emulator is running on'
+    value: ${{ inputs.emulator-port }}
+
+runs:
+  using: 'composite'
+  steps:
+
+    - name: Launch Emulator
+      shell: bash
+      run: ${{ github.action_path }}/action.sh ${{ inputs.avd-name }} ${{ inputs.emulator-port }} ${{ inputs.emulator-boot-timeout }} "${{ inputs.emulator-options }}" ${{ inputs.disable-animations }} ${{ inputs.disable-spellchecker }} ${{ inputs.enable-hw-keyboard }} ${{ inputs.verbose }}

@@ -26,16 +26,17 @@ Add a step to your workflow YAML to launch the emulator:
 
 ## Inputs
 
-| Name                  | Description                                                                                      | Default                                                      |
-|-----------------------|--------------------------------------------------------------------------------------------------|--------------------------------------------------------------|
-| `avd-name`            | Custom AVD name used for launching the Android Virtual Device                                    | `test`                                                       |
-| `emulator-port`       | Port to run emulator on, allows running multiple emulators on the same machine                   | `5554`                                                       |
-| `emulator-boot-timeout` | Emulator boot timeout in seconds. If it takes longer, the action fails                         | `180`                                                        |
-| `emulator-options`    | Command-line options used when launching the emulator                                            | `-no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim` |
-| `disable-animations`  | Whether to disable animations (`true` or `false`)                                                | `true`                                                       |
-| `disable-spellchecker`| Whether to disable the Android spell checker framework (`true` or `false`)                       | `false`                                                      |
-| `enable-hw-keyboard`  | Whether to enable hardware keyboard (`true` or `false`)                                          | `false`                                                      |
-| `verbose`             | Enable verbose log output (`true` or `false`)                                                    | `false`                                                      |
+| Name                    | Description                                                                                          | Default                                                      |
+|-------------------------|------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|
+| `avd-name`              | Custom AVD name used for launching the Android Virtual Device                                        | `test`                                                       |
+| `emulator-port`         | Port to run emulator on, allows running multiple emulators on the same machine                       | `5554`                                                       |
+| `emulator-boot-timeout` | Emulator boot timeout in seconds. If it takes longer, the action fails                               | `180`                                                        |
+| `emulator-options`      | Command-line options used when launching the emulator                                                | `-no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim` |
+| `disable-animations`    | Whether to disable animations (`true` or `false`)                                                    | `true`                                                       |
+| `disable-spellchecker`  | Whether to disable the Android spell checker framework (`true` or `false`)                           | `false`                                                      |
+| `enable-hw-keyboard`    | Whether to enable hardware keyboard (`true` or `false`)                                              | `false`                                                      |
+| `verbose`               | Enable verbose log output (`true` or `false`)                                                        | `false`                                                      |
+| `kill`                  | Whether to kill the running emulator on 'emulator-port' and exits immediately (`true` or `false`)    | `false`                                                      |
 
 ## Outputs
 

@@ -27,6 +27,11 @@ inputs:
     description: 'whether to enable hardware keyboard - `true` or `false`.'
     type: boolean
     default: false
+  kill:
+    description: If true, kills the running emulator on 'emulator-port' and exits immediately.
+    type: boolean
+    default: false
+    required: false
   verbose:
     description: You can enable the verbose log for easier debugging.
     type: boolean
@@ -40,7 +45,14 @@ outputs:
 runs:
   using: 'composite'
   steps:
+    - name: Kill Emulator
+      if: ${{ inputs.kill == 'true' }}
+      shell: bash
+      run: |
+        adb -s emulator-${{ inputs.emulator-port }} emu kill
 
     - name: Launch Emulator
+      if: ${{ inputs.kill != 'true' }}
       shell: bash
-      run: ${{ github.action_path }}/action.sh ${{ inputs.avd-name }} ${{ inputs.emulator-port }} ${{ inputs.emulator-boot-timeout }} "${{ inputs.emulator-options }}" ${{ inputs.disable-animations }} ${{ inputs.disable-spellchecker }} ${{ inputs.enable-hw-keyboard }} ${{ inputs.verbose }}
+      run: |
+        ${{ github.action_path }}/action.sh ${{ inputs.avd-name }} ${{ inputs.emulator-port }} ${{ inputs.emulator-boot-timeout }} "${{ inputs.emulator-options }}" ${{ inputs.disable-animations }} ${{ inputs.disable-spellchecker }} ${{ inputs.enable-hw-keyboard }} ${{ inputs.verbose }}
